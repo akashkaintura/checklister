@@ -17,31 +17,35 @@
             </li>
 
              <li class="c-sidebar-nav-title">{{ __('Manage Checklists') }}</li>
-            @foreach (ChecklistGroup::with('checklists')->get() as $group)
+            @foreach (App\Models\ChecklistGroup::with('checklists')->get() as $group)
                 <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
                     <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle"
                         href="{{ route('admin.checklists_groups.edit', $group->id) }}">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle') }}"></use>
                     </svg> {{ $group->name }}</a>
+
                     <ul class="c-sidebar-nav-dropdown-items">
                         @foreach ($group->checklists as $checklist)
                             <li class="c-sidebar-nav-item">
-                                <a class="c-sidebar-nav-link" href="{{ route('admin.checklists.edit', $checklist->id) }}"><span class="c-sidebar-nav-icon"></span>
+                                <a class="c-sidebar-nav-link"
+                                    href="{{ route('admin.checklist_groups.checklists.edit', [$group, $checklist]) }}">
+                                    <span class="c-sidebar-nav-icon"></span>
                                     {{ $checklist->name }}</a>
                             </li>
                         @endforeach
+                        <li class="c-sidebar-nav-item">
+                            <a class="c-sidebar-nav-link"
+                               href="{{ route('admin.checklist_groups.checklists.create', $group) }}">{{ __('New checklist') }}</a>
+                        </li>
                     </ul>
                 </li>
-
-                <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
-                    <a class="c-sidebar-nav-link" href="{{ route('admin.pages.index') }}">
-                        <svg class="c-sidebar-nav-icon">
-                            <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle') }}"></use>
-                        </svg> Pages
-                    </a>
-                </li>
             @endforeach
+                    <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
+                        <a class="c-sidebar-nav-link"
+                        href="{{ route('admin.checklist_groups.create') }}">
+                        {{ __('New checklist group') }}</a>
+                    </li>
         @endif
 
         <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">

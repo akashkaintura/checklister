@@ -14,7 +14,7 @@ class ChecklistGroupController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.checklist_groups.create');
     }
 
     /**
