@@ -4,17 +4,18 @@
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-speedometer') }}"></use>
                 </svg> Dashboard</a></li>
-        <li class="c-sidebar-nav-title">Admin</li>
-        {{-- pages --}}
-        <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
-            <a class="c-sidebar-nav-link" href="{{ route('admin.pages.index') }}">
-                <svg class="c-sidebar-nav-icon">
-                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle') }}"></use>
-                </svg> Pages
+
+        @if (auth()->user()->isadmin)
+            <li class="c-sidebar-nav-title">Admin</li>
+                {{-- pages --}}
+            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
+                 <a class="c-sidebar-nav-link" href="{{ route('admin.pages.index') }}">
+                    <svg class="c-sidebar-nav-icon">
+                        <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle') }}"></use>
+                    </svg> Pages
             </a>
         </li>
-
-
+        @endif
 
         <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
                 <svg class="c-sidebar-nav-icon">
