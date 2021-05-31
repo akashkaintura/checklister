@@ -5,7 +5,7 @@
                     <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-speedometer') }}"></use>
                 </svg> Dashboard</a></li>
 
-        @if (auth()->user()->isadmin)
+        @if (auth()->user()->is_admin)
             <li class="c-sidebar-nav-title">Admin</li>
                 {{-- pages --}}
             <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
@@ -42,4 +42,4 @@
     </ul>
     <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
 </div>
-{{-- End Sidebar --}}
+
