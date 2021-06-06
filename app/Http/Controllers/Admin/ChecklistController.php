@@ -7,22 +7,16 @@ use App\Http\Requests\StoreChecklistRequest;
 use App\Models\Checklist;
 use App\Models\ChecklistGroup;
 use Illuminate\Http\Request;
+use Dotenv\Validator;
 
 class ChecklistController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param ChecklistGroup $checklistGroup
      * @return \Illuminate\Http\Response
      */
     public function create(ChecklistGroup $checklistGroup)
@@ -33,7 +27,8 @@ class ChecklistController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreChecklistRequest $request
+     * @param ChecklistGroup $checklistGroup
      * @return \Illuminate\Http\Response
      */
     public function store(StoreChecklistRequest $request, ChecklistGroup $checklistGroup)
@@ -46,7 +41,8 @@ class ChecklistController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param ChecklistGroup $checklistGroup
+     * @param Checklist $checklist
      * @return \Illuminate\Http\Response
      */
     public function edit(ChecklistGroup $checklistGroup, Checklist $checklist)
@@ -57,8 +53,9 @@ class ChecklistController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  StoreChecklistRequest  $request
+     * @param ChecklistGroup $checklistGroup
+     * @param Checklist $checklist
      * @return \Illuminate\Http\Response
      */
     public function update(StoreChecklistRequest $request, ChecklistGroup $checklistGroup, Checklist $checklist)
@@ -71,11 +68,14 @@ class ChecklistController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param ChecklistGroup $checklistGroup
+     * @param Checklist $checklist
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ChecklistGroup $checklistGroup, Checklist $checklist)
     {
-        //
+        $checklist->delete();
+
+        return redirect()->route('home');
     }
 }

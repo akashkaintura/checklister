@@ -38,18 +38,14 @@
                         </form>
                     </div>
 
-                    <form action="{{ route('admin.checklist_groups.checklists.destroy', $checklistGroup) }}" method="POST">
+                    <form action="{{ route('admin.checklist_groups.checklists.destroy', [$checklistGroup, $checklist]) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-danger" type="submit"
                             onclick="return confirm('{{ __('Are you sure?') }}')"> {{ __('Delete This Checklist ') }}</button>
                     </form>
                 </div>
-                 <form action="{{ route('admin.checklist_groups.checklists.destroy', $checklistGroup) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-sm btn-dager" type="submit" onclick="return confirm( '{{ ('Are you sure?') }}' )">{{ __('Delete this checklist ') }}</button>
-                    </form>
+
             </div>
         </div>
     </div>

@@ -45,11 +45,6 @@
                             onclick="return confirm('{{ __('Are you sure?') }}')"> {{ __('Delete This Checklist Group') }}</button>
                     </form>
                 </div>
-                 <form action="{{ route('admin.checklist_groups.destroy', $checklistGroup) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-sm btn-dager" type="submit" onclick="return confirm( '{{ ('Are you sure?') }}' )">{{ __('Delete this checklist group') }}</button>
-                    </form>
             </div>
         </div>
     </div>
