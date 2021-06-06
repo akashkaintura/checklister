@@ -7,7 +7,6 @@ use App\Http\Requests\StoreChecklistRequest;
 use App\Models\Checklist;
 use App\Models\ChecklistGroup;
 use Illuminate\Http\Request;
-use Dotenv\Validator;
 
 class ChecklistController extends Controller
 {
@@ -33,7 +32,7 @@ class ChecklistController extends Controller
      */
     public function store(StoreChecklistRequest $request, ChecklistGroup $checklistGroup)
     {
-        $checklistGroup->checklist()->create($request->validated());
+        $checklistGroup->checklists()->create($request->validated());
 
         return redirect()->route('home');
     }
@@ -47,6 +46,7 @@ class ChecklistController extends Controller
      */
     public function edit(ChecklistGroup $checklistGroup, Checklist $checklist)
     {
+        // $checklist->load('tasks');
         return view('admin.checklists.edit', compact('checklistGroup', 'checklist'));
     }
 

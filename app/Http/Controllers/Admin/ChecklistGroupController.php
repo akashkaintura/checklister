@@ -19,7 +19,6 @@ class ChecklistGroupController extends Controller
     {
         return view('admin.checklist_groups.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *

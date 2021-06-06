@@ -13,8 +13,13 @@ class Checklist extends Model
     protected $fillable = ['checklist_group_id', 'name'];
 
 
-    public function checklist()
+    public function checklists()
     {
         return $this->hasMany(Checklist::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 }
