@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreChecklistRequest;
+use App\Models\Checklist;
+use App\Models\ChecklistGroup;
 use Illuminate\Http\Request;
 
 class ChecklistController extends Controller
@@ -22,9 +25,9 @@ class ChecklistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(ChecklistGroup $checklistGroup)
     {
-        //
+        return view('admin.checklists.create', compact('checklistGroup'));
     }
 
     /**
@@ -33,20 +36,11 @@ class ChecklistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreChecklistRequest $request, ChecklistGroup $checklistGroup)
     {
-        //
-    }
+        $checklistGroup->checklist()->create($request->validated());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('home');
     }
 
     /**
@@ -55,9 +49,9 @@ class ChecklistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ChecklistGroup $checklistGroup, Checklist $checklist)
     {
-        //
+        return view('admin.checklists.edit', compact('checklistGroup', 'checklist'));
     }
 
     /**
@@ -67,9 +61,11 @@ class ChecklistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreChecklistRequest $request, ChecklistGroup $checklistGroup, Checklist $checklist)
     {
-        //
+        $checklist->update($request->validated());
+
+        return redirect()->route('home');
     }
 
     /**

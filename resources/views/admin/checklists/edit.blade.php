@@ -16,17 +16,17 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('admin.checklist_groups.update', $checklistGroup) }}" method="POST">
+                        <form action="{{ route('admin.checklist_groups.checklists.update', [$checklistGroup, $checklist]) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <div class="card-header">{{ __('Edit Checklist Group') }} {{ $cheklistGroup->name }}</div>
+                            <div class="card-header">{{ __('Edit Checklist') }}</div>
 
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label for="name">{{ __('Name') }}</label>
-                                            <input value="{{ $checklistGroup->name }}" class="form-control" name="name" placeholder="{{ __('Checklist name')}}"
+                                            <input value="{{ $checklist->name }}" class="form-control" name="name" placeholder="{{ __('Checklist name') }}"
                                                    type="text">
                                         </div>
                                     </div>
@@ -38,17 +38,17 @@
                         </form>
                     </div>
 
-                    <form action="{{ route('admin.checklist_groups.destroy', $checklistGroup) }}" method="POST">
+                    <form action="{{ route('admin.checklist_groups.checklists.destroy', $checklistGroup) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-danger" type="submit"
-                            onclick="return confirm('{{ __('Are you sure?') }}')"> {{ __('Delete This Checklist Group') }}</button>
+                            onclick="return confirm('{{ __('Are you sure?') }}')"> {{ __('Delete This Checklist ') }}</button>
                     </form>
                 </div>
-                 <form action="{{ route('admin.checklist_groups.destroy', $checklistGroup) }}" method="POST">
+                 <form action="{{ route('admin.checklist_groups.checklists.destroy', $checklistGroup) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-sm btn-dager" type="submit" onclick="return confirm( '{{ ('Are you sure?') }}' )">{{ __('Delete this checklist group') }}</button>
+                        <button class="btn btn-sm btn-dager" type="submit" onclick="return confirm( '{{ ('Are you sure?') }}' )">{{ __('Delete this checklist ') }}</button>
                     </form>
             </div>
         </div>
