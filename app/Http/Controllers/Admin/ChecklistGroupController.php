@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreChecklistGroupRequest;
+use App\Http\Requests\UpdateChecklistGroupRequest;
 use App\Models\ChecklistGroup;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -24,10 +25,10 @@ class ChecklistGroupController extends Controller
 
     public function edit(ChecklistGroup $checklistGroup): View
     {
-        return view('checklist_groups.edit', compact('ChecklistGroup'));
+        return view('admin.checklist_groups.edit', compact('ChecklistGroup'));
     }
 
-    public function update(StoreChecklistGroupRequest $request, ChecklistGroup $checklistGroup): RedirectResponse
+    public function update(UpdateChecklistGroupRequest $request, ChecklistGroup $checklistGroup): RedirectResponse
     {
         $checklistGroup->update($request->validated());
 

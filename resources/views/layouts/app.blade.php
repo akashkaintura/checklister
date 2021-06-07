@@ -26,11 +26,11 @@
             </svg>
         </button>
         <ul class="c-header-nav ml-auto mr-4">
-            {{-- <li class="c-header-nav-item">
+            <li class="c-header-nav-item">
                 <a class="c-header-nav-link" href="{{ route('consultation') }}">{{ __('Get Consultation') }}</a>
-            </li> --}}
+            </li>
             <li class="c-header-nav-item d-md-down-none mx-2">
-                <a class="c-header-nav-link" href="{{ route('home') }}">
+                <a class="c-header-nav-link" href="{{ route('welcome') }}">
                     <svg class="c-icon">
                         <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-settings') }}"></use>
                     </svg>
@@ -71,7 +71,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.min.js"></script>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 @livewireScripts
 <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
 @yield('scripts')
