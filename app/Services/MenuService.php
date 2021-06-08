@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Checklist;
 use App\Models\ChecklistGroup;
+use App\Models\Task;
 use Carbon\Carbon;
 
 class MenuService
@@ -52,9 +53,34 @@ class MenuService
             }
         }
 
+        $user_tasks_menu = [];
+        if (!auth()->user()->is_admin) {
+            $user_tasks = Task::where('user_id', auth()->id())->get();
+            $user_tasks_menu = [
+                'my_day' => [
+                    'name' => __('My Day'),
+                    'icon' => 'sun',
+                    'tasks_count' => $user_tasks->whereNotNull('added_to_my_day_at')->count()
+                ],
+                'important' => [
+                    'name' => __('Important'),
+                    'icon' => 'star',
+                    'tasks_count' => 0,
+                ],
+                'planned' => [
+                    'name' => __('Planned'),
+                    'icon' => 'calendar',
+                    'tasks_count' => 0,
+                ],
+            ];
+        }
+
+
         return [
             'admin_menu' => $menu,
             'user_menu' => $groups,
+            'user_tasks_menu' => $user_tasks_menu,
+
         ];
     }
 }
