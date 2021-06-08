@@ -8,15 +8,16 @@ use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
-    public function store()
+    public function store(Request $request)
     {
         $task = new Task();
         $task->id = 0;
         $task->exists = true;
+        // Spatie
         $image = $task->addMediaFromRequest('upload')->toMediaCollection('images');
 
         return response()->json([
-            'url' => $image->getUrl('thumb')
+            'url' => $image->getUrl()
         ]);
     }
 }

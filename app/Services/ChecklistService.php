@@ -19,5 +19,9 @@ class ChecklistService
                 'name' => $checklist->name,
             ]
         );
+
+        $checklist->touch();
+
+        return $checklist;
     }
 }

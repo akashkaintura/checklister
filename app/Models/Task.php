@@ -11,6 +11,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Task extends Model implements HasMedia
 {
+    // add Spatie functionality
     use HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $fillable = [
