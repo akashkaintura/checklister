@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
-    public function store(Request $request)
+    public function store()
     {
         $task = new Task();
         $task->id = 0;
