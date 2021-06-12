@@ -19,7 +19,7 @@ class MenuService
             'checklists.tasks' => function ($query) {
                 $query->whereNull('tasks.user_id');
             },
-            'checklists.user_tasks',
+            'checklists.user_completed_tasks',
         ])
             ->get();
 
@@ -46,7 +46,7 @@ class MenuService
                         && $checklist_updated_at
                         && Carbon::create($checklist['updated_at'])->greaterThan($checklist_updated_at);;
                     $checklist['tasks_count'] = count($checklist['tasks']);
-                    $checklist['completed_tasks_count'] = count($checklist['user_tasks']);
+                    $checklist['completed_tasks_count'] = count($checklist['user_completed_tasks']);
                 }
 
                 $groups[] = $group;

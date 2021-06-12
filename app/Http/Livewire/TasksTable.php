@@ -16,6 +16,11 @@ class TasksTable extends Component
         return view('livewire.tasks-table', compact('tasks'));
     }
 
+    /*
+    * Task Positiin
+    * Rearrange the task order
+    */
+
     public function task_up($task_id)
     {
         $task = Task::find($task_id);

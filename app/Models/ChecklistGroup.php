@@ -16,4 +16,9 @@ class ChecklistGroup extends Model
     {
         return $this->hasMany(Checklist::class);
     }
+
+    public function user_tasks()
+    {
+        return $this->hasMany(Task::class)->where('user_id', auth()->id());
+    }
 }
