@@ -23,11 +23,21 @@ class Task extends Model implements HasMedia
         'task_id',
         'completed_at',
         'added_to_my_day_at',
+        'is_important',
+        'due_date'
+    ];
+
+    protected $dates = [
+        'due_date'
     ];
 
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->width(600);
+            ->width(500);
+    }
+    public function checklist()
+    {
+        return $this->belongsTo(Checklist::class);
     }
 }

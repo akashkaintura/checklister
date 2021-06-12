@@ -65,12 +65,12 @@ class MenuService
                 'important' => [
                     'name' => __('Important'),
                     'icon' => 'star',
-                    'tasks_count' => 0,
+                    'tasks_count' => $user_tasks->where('is_important', 1)->count()
                 ],
                 'planned' => [
                     'name' => __('Planned'),
                     'icon' => 'calendar',
-                    'tasks_count' => 0,
+                    'tasks_count' => $user_tasks->whereNotNull('due_date')->count()
                 ],
             ];
         }
