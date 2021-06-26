@@ -1,9 +1,48 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# checklister
 
-## About
+Laravel Checklister
 
-This is the Multi- User Platform for the user where every user can be assigned tasks as a checklist.
+##System Requirements
 
-## Security Vulnerabilities
+1. PHP (Version 8+)
+2. Composer 2
+3. Git
+4. Mysql (Version 5.7+)
+5. 1 GB Ram(at least)
+6. Apache Webserver(Version 2.4)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [akashkaintura@yahoo.com](mailto:akashkaintura@yahoo.com). All security vulnerabilities will be promptly addressed.
+## Framework Used
+
+1. Laravel for PHP
+2. BootStrap for the UI
+
+## Project Setup
+
+1. Git clone the repository
+2. Run composer install to load PHP dependencies to root of project folder
+
+```shell
+composer install
+```
+
+3. Create a .env file to the root of the project folder if not created by copying the .env.example file
+4. Setup the configuration of app environment as local, database connection and other settings in .env file
+5. Setup virtual host and point the document location to public folder
+6. Turn on mod_rewrite engine for apache
+
+##Folder Structure
+
+```
+.
++-- app
++-- bootstrap
++-- config
++-- database
++-- public
+|	+-- css
+|	+-- js
+|	+-- fonts
+|	+-- images
+|	+-- upload
++-- vendor
+```

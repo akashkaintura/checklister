@@ -46,6 +46,7 @@ class AdminChecklistsTest extends TestCase
         $group = ChecklistGroup::where('name', 'Updated first group')->first();
         $this->assertNotNull($group);
 
+        // Menu for the Admin
         $menu = (new MenuService())->get_menu();
         $this->assertEquals(1, $menu['admin_menu']->where('name', 'Updated first group')->count());
 
