@@ -27,8 +27,11 @@ Route::redirect('/', 'welcome');
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::group(
+    ['middleware' => ['auth', 'save_last_action_timestamp']],
+    function () {
 Route::group(['middleware' => ['auth', 'save_last_action_timestamp']], function () {
     // Universal Controllers
     Route::get('welcome', [ControllersPageController::class, 'welcome'])->name('welcome');
