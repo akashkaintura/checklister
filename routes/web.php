@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController as ControllersPageController;
 use App\Http\Controllers\User\ChecklistController as UserChecklistController;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,7 @@ Route::redirect('/', 'welcome');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth', 'save_last_action_timestamp']], function () {
     // Universal Controllers

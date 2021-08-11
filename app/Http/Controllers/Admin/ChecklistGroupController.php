@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class ChecklistGroupController extends Controller
 {
-    public function create()
+    public function create(): View
     {
         return view('admin.checklist_groups.create');
     }
@@ -20,25 +20,26 @@ class ChecklistGroupController extends Controller
     public function store(StoreChecklistGroupRequest $request): RedirectResponse
     {
         ChecklistGroup::create($request->validated());
-        return redirect()->route('home');
+
+        return redirect()->route('welcome');
     }
 
     public function edit(ChecklistGroup $checklistGroup): View
     {
-        return view('admin.checklist_groups.edit', compact('ChecklistGroup'));
+        return view('admin.checklist_groups.edit', compact('checklistGroup'));
     }
 
     public function update(UpdateChecklistGroupRequest $request, ChecklistGroup $checklistGroup): RedirectResponse
     {
         $checklistGroup->update($request->validated());
 
-        return redirect()->route('home');
+        return redirect()->route('welcome');
     }
 
     public function destroy(ChecklistGroup $checklistGroup): RedirectResponse
     {
         $checklistGroup->delete();
 
-        return redirect()->route('home');
+        return redirect()->route('welcome');
     }
 }
