@@ -1,6 +1,6 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="text-center mt-2">
-        <img src="{{ asset('img/logo.png') }}" />
+        <img src="{{ asset('css/checklister.png') }}"/>
     </div>
     <ul class="c-sidebar-nav">
         @if (auth()->user()->is_admin)

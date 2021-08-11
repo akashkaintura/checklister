@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController as ControllersPageController;
 use App\Http\Controllers\User\ChecklistController as UserChecklistController;
 use Illuminate\Support\Facades\Auth;
@@ -27,25 +26,27 @@ Route::redirect('/', 'welcome');
 
 Auth::routes();
 
+Route::get('/home', [Home::class, 'index'])->name('home');
+
 Route::group(['middleware' => ['auth', 'save_last_action_timestamp']], function () {
-    Route::get('welcome', [\App\Http\Controllers\PageController::class, 'welcome'])->name('welcome');
-    Route::get('consultation', [\App\Http\Controllers\PageController::class, 'consultation'])->name('consultation');
-    Route::get('checklists/{checklist}', [\App\Http\Controllers\User\ChecklistController::class, 'show'])
-        ->name('user.checklists.show');
-    Route::get('tasklist/{list_type}', [\App\Http\Controllers\User\ChecklistController::class, 'tasklist'])
+    // Universal Controllers
+    Route::get('welcome', [ControllersPageController::class, 'welcome'])->name('welcome');
+    Route::get('consultation', [ControllersPageController::class, 'consultation'])->name('consultation');
+    Route::get('checklists/{checklist}', [UserChecklistController::class, 'show'])
+        ->name('users.checklists.show');
+    Route::get('tasklist/{list_type}', [UserChecklistController::class, 'tasklist'])
         ->name('user.tasklist');
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'is_admin'], function () {
-        Route::resource('pages', \App\Http\Controllers\Admin\PageController::class)
+        Route::resource('pages', PageController::class)
             ->only(['edit', 'update']);
-        Route::resource('checklist_groups', \App\Http\Controllers\Admin\ChecklistGroupController::class);
-        Route::resource('checklist_groups.checklists', \App\Http\Controllers\Admin\ChecklistController::class);
-        Route::resource('checklists.tasks', \App\Http\Controllers\Admin\TaskController::class);
+        Route::resource('checklist_groups', ChecklistGroupController::class);
+        Route::resource('checklist_groups.checklists', ChecklistController::class);
+        Route::resource('checklists.tasks', TaskController::class);
 
-        Route::post('users/{user}/toggle_free_access', [\App\Http\Controllers\Admin\UserController::class, 'toggle_free_access'])
-            ->name('users.toggle_free_access');
-        Route::get('users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
-
-        Route::post('images', [\App\Http\Controllers\Admin\ImageController::class, 'store'])->name('images.store');
+        Route::post('users/{user}/toggle_free_access', [UserController::class, 'toggle_free_access'])
+        ->name('users.toggle_free_access');
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
+        Route::post('images', [ImageController::class, 'store'])->name('images.store');
     });
 });
